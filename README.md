@@ -1,48 +1,59 @@
 # Open Product Research Toolkit
 
-A small, open-source, local-first web tool for organizing and comparing product research data.
+An open-source, browser-based toolkit for organizing product research, comparing market opportunities, and tracking promising product ideas.
 
-## Current features
+## Features
 
-- Import product records from CSV files.
-- Search products and filter by category or saved status.
-- Sort by opportunity score, name, growth, or estimated sales.
-- Save and unsave products in browser storage.
-- View product notes and a transparent heuristic score.
-- Export the current dataset to CSV.
-- Download a CSV template.
+- Import product research through CSV files.
+- Search products by name, category, and notes.
+- Filter products by category and saved status.
+- Sort products by opportunity score, growth, and estimated sales.
+- Calculate product opportunity scores.
+- Save promising products for future review.
+- Export research data to CSV.
+- Store research locally in the browser without requiring an account or server.
 
-## Important data notes
+## Getting Started
 
-The included records are fictional examples. This project does not connect to TikTok Shop, FastMoss, or another marketplace. It does not collect live sales, trend, or creator data. Imported information is supplied by the user and stored locally in the browser. The opportunity score is a simple heuristic for sorting, not a prediction or recommendation.
+1. Visit the project website.
+2. Download the CSV template.
+3. Add your researched product information.
+4. Import the CSV file.
+5. Review, compare, and save promising products.
+6. Export your research whenever needed.
 
-## Run locally
+## CSV Format
 
-1. Download or clone this repository.
-2. Open `index.html` in a modern browser.
-3. Import your own CSV or load the demo dataset.
+Required columns:
 
-No build tools, account, or API key are required.
+`product, category, price, estimated_sales, growth_percent, competition`
 
-## CSV format
+Optional column:
 
-Required columns: `product`, `category`, `price`, `estimated_sales`, `growth_percent`, `competition`.
+`notes`
 
-Optional column: `notes`.
+Competition values: `low`, `medium`, `high`.
 
-`competition` must be `low`, `medium`, or `high`. Numeric columns must contain non-negative numbers. Use values you have permission to use and clearly distinguish estimates from verified data.
+## Technology
+
+- HTML
+- CSS
+- JavaScript
+- Browser Local Storage
+- CSV import and export
+
+## Data Transparency
+
+This project currently provides a local-first research workflow. Sample records are fictional demonstration data, not verified marketplace statistics.
+
+Live marketplace integrations and automated market-data collection are not currently implemented.
+
+Opportunity scores are heuristic indicators and should not be treated as investment or sales predictions.
 
 ## Privacy
 
-This is a static client-side application. CSV parsing, filtering, saving, and exporting happen in your browser. The app does not send product data to a server. Saved records use browser local storage on the current device and browser.
-
-## Roadmap
-
-- Improve CSV validation and add tests.
-- Add editable product records and research notes.
-- Improve accessibility and mobile usability.
-- Consider integrations only where official documentation and permission allow them.
+Research data is processed locally in the browser. No account or server is required for the current version.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT License.
