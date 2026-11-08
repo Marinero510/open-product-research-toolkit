@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A beginner-friendly TikTok Shop product research dashboard prototype." />
+  <title>ShopSignal — Product Research</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">S</span><span>ShopSignal</span></div>
+    <div class="nav-label">WORKSPACE</div>
+    <a class="nav active" href="#overview">▦ <span>Overview</span></a>
+    <a class="nav" href="#products">◈ <span>Product research</span></a>
+    <a class="nav disabled" href="#trends" title="Planned feature">↗ <span>Trend explorer</span><small>SOON</small></a>
+    <a class="nav disabled" href="#creators" title="Planned feature">◎ <span>Creator research</span><small>SOON</small></a>
+    <div class="sidebar-bottom"><div class="avatar">M</div><div><strong>My workspace</strong><small>Starter prototype</small></div></div>
+  </aside>
+
+  <main class="main" id="overview">
+    <header class="topbar"><div><div class="eyebrow">WORKSPACE / OVERVIEW</div><h1>Product research</h1><p class="subhead">Explore product opportunities in one place.</p></div><div class="top-actions"><span class="demo-pill"><i></i> DEMO DATA</span><button class="profile">M</button></div></header>
+
+    <section class="notice"><strong>Prototype mode</strong><span>This first version uses sample data only. It is not connected to TikTok Shop or FastMoss yet.</span></section>
+
+    <section class="metrics" aria-label="Sample metrics">
+      <article class="metric"><div class="metric-title">Products tracked <span>◈</span></div><div class="metric-value">128</div><div class="metric-foot">Sample workspace data</div></article>
+      <article class="metric"><div class="metric-title">Rising products <span>↗</span></div><div class="metric-value">24</div><div class="metric-foot">Illustrative demo figure</div></article>
+      <article class="metric"><div class="metric-title">Creators reviewed <span>◎</span></div><div class="metric-value">36</div><div class="metric-foot">Illustrative demo figure</div></article>
+      <article class="metric"><div class="metric-title">Saved opportunities <span>☆</span></div><div class="metric-value">12</div><div class="metric-foot">Sample workspace data</div></article>
+    </section>
+
+    <section class="panel" id="products">
+      <div class="panel-head"><div><h2>Product discovery</h2><p>Search and filter the example product catalogue.</p></div><span class="result-count" id="resultCount">6 products</span></div>
+      <div class="filters"><label class="search">⌕ <input id="searchInput" type="search" placeholder="Search products or categories…" /></label><select id="categoryFilter" aria-label="Filter by category"><option value="all">All categories</option><option>Beauty</option><option>Home</option><option>Accessories</option><option>Fitness</option><option>Pets</option></select><select id="signalFilter" aria-label="Filter by signal"><option value="all">All signals</option><option value="Rising">Rising</option><option value="Stable">Stable</option><option value="Watch">Watch</option></select></div>
+      <div class="table-wrap"><table><thead><tr><th>PRODUCT</th><th>CATEGORY</th><th>DEMO PRICE</th><th>DEMO SIGNAL</th><th></th></tr></thead><tbody id="productRows"></tbody></table></div>
+      <div class="empty" id="emptyState" hidden>No products match your search. Try another term or filter.</div>
+    </section>
+    <footer>ShopSignal prototype · Built as a learning project · Sample data only</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
