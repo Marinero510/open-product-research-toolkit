@@ -1,43 +1,46 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A beginner-friendly TikTok Shop product research dashboard prototype." />
-  <title>ShopSignal — Product Research</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An open-source, local-first toolkit for organizing and comparing product research data.">
+  <title>Open Product Research Toolkit</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="brand"><span class="brand-mark">S</span><span>ShopSignal</span></div>
-    <div class="nav-label">WORKSPACE</div>
-    <a class="nav active" href="#overview">▦ <span>Overview</span></a>
-    <a class="nav" href="#products">◈ <span>Product research</span></a>
-    <a class="nav disabled" href="#trends" title="Planned feature">↗ <span>Trend explorer</span><small>SOON</small></a>
-    <a class="nav disabled" href="#creators" title="Planned feature">◎ <span>Creator research</span><small>SOON</small></a>
-    <div class="sidebar-bottom"><div class="avatar">M</div><div><strong>My workspace</strong><small>Starter prototype</small></div></div>
-  </aside>
-
-  <main class="main" id="overview">
-    <header class="topbar"><div><div class="eyebrow">WORKSPACE / OVERVIEW</div><h1>Product research</h1><p class="subhead">Explore product opportunities in one place.</p></div><div class="top-actions"><span class="demo-pill"><i></i> DEMO DATA</span><button class="profile">M</button></div></header>
-
-    <section class="notice"><strong>Prototype mode</strong><span>This first version uses sample data only. It is not connected to TikTok Shop or FastMoss yet.</span></section>
-
-    <section class="metrics" aria-label="Sample metrics">
-      <article class="metric"><div class="metric-title">Products tracked <span>◈</span></div><div class="metric-value">128</div><div class="metric-foot">Sample workspace data</div></article>
-      <article class="metric"><div class="metric-title">Rising products <span>↗</span></div><div class="metric-value">24</div><div class="metric-foot">Illustrative demo figure</div></article>
-      <article class="metric"><div class="metric-title">Creators reviewed <span>◎</span></div><div class="metric-value">36</div><div class="metric-foot">Illustrative demo figure</div></article>
-      <article class="metric"><div class="metric-title">Saved opportunities <span>☆</span></div><div class="metric-value">12</div><div class="metric-foot">Sample workspace data</div></article>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Open Product Research Toolkit home"><span class="brand-mark">P</span><span><strong>Product Research Toolkit</strong><small>Open-source · Local-first</small></span></a>
+    <div class="header-actions"><span class="privacy-label">Your data stays in this browser</span><button id="resetDemo" class="button button-quiet" type="button">Load demo data</button></div>
+  </header>
+  <main id="top" class="container">
+    <section class="intro"><div><p class="eyebrow">RESEARCH WORKSPACE</p><h1>Organize product opportunities.</h1><p class="intro-copy">Import a CSV, compare product signals, save promising ideas, and export your research. No account or server required.</p></div><div class="demo-tag"><span></span> DEMO DATA</div></section>
+    <section class="notice"><strong>Prototype notice</strong><span>Example records are fictional demo data. Scores are simple heuristics—not market predictions. This tool is not connected to TikTok Shop, FastMoss, or any live marketplace.</span></section>
+    <section class="stats" aria-label="Workspace summary">
+      <article class="stat"><span>Products in view</span><strong id="statProducts">0</strong></article>
+      <article class="stat"><span>Saved products</span><strong id="statSaved">0</strong></article>
+      <article class="stat"><span>Average opportunity score</span><strong id="statAverage">—</strong></article>
     </section>
-
-    <section class="panel" id="products">
-      <div class="panel-head"><div><h2>Product discovery</h2><p>Search and filter the example product catalogue.</p></div><span class="result-count" id="resultCount">6 products</span></div>
-      <div class="filters"><label class="search">⌕ <input id="searchInput" type="search" placeholder="Search products or categories…" /></label><select id="categoryFilter" aria-label="Filter by category"><option value="all">All categories</option><option>Beauty</option><option>Home</option><option>Accessories</option><option>Fitness</option><option>Pets</option></select><select id="signalFilter" aria-label="Filter by signal"><option value="all">All signals</option><option value="Rising">Rising</option><option value="Stable">Stable</option><option value="Watch">Watch</option></select></div>
-      <div class="table-wrap"><table><thead><tr><th>PRODUCT</th><th>CATEGORY</th><th>DEMO PRICE</th><th>DEMO SIGNAL</th><th></th></tr></thead><tbody id="productRows"></tbody></table></div>
-      <div class="empty" id="emptyState" hidden>No products match your search. Try another term or filter.</div>
+    <section class="panel import-panel">
+      <div class="panel-title"><div><p class="eyebrow">STEP 1</p><h2>Bring in your research</h2><p>Upload a CSV file with product information, or start with the example dataset.</p></div></div>
+      <div class="import-actions"><label class="button button-primary file-button">Import CSV<input id="csvFile" type="file" accept=".csv,text/csv"></label><button id="downloadTemplate" class="button button-secondary" type="button">Download CSV template</button><button id="exportCsv" class="button button-secondary" type="button">Export current data</button></div>
+      <p class="hint">Expected columns: product, category, price, estimated_sales, growth_percent, competition (low, medium, high), notes. CSV data is processed locally in your browser.</p>
+      <p id="importStatus" class="status" role="status" aria-live="polite"></p>
     </section>
-    <footer>ShopSignal prototype · Built as a learning project · Sample data only</footer>
+    <section class="panel">
+      <div class="panel-title panel-title-row"><div><p class="eyebrow">STEP 2</p><h2>Product research list</h2><p>Search, filter, sort, and save products for further review.</p></div><span id="resultCount" class="count">0 products</span></div>
+      <div class="filters">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search product, category, or notes"></label>
+        <select id="categoryFilter" aria-label="Filter by category"><option value="all">All categories</option></select>
+        <select id="savedFilter" aria-label="Filter saved products"><option value="all">All products</option><option value="saved">Saved only</option></select>
+        <select id="sortFilter" aria-label="Sort products"><option value="score">Highest score</option><option value="name">Product name</option><option value="growth">Growth: high to low</option><option value="sales">Estimated sales: high to low</option></select>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>PRODUCT</th><th>CATEGORY</th><th>PRICE</th><th>EST. SALES</th><th>GROWTH</th><th>COMPETITION</th><th>SCORE</th><th>SAVE</th></tr></thead><tbody id="productRows"></tbody></table></div>
+      <div id="emptyState" class="empty" hidden>No products match these filters. Try another search or import a CSV.</div>
+      <p class="hint">Opportunity score is calculated from the growth and competition values you provide. It is a sorting aid only, not investment or sales advice.</p>
+    </section>
+    <section class="panel methodology"><p class="eyebrow">HOW THE SCORE WORKS</p><h2>A transparent starting point</h2><p>The prototype combines the entered growth percentage with a competition adjustment: low competition adds more points, medium adds fewer, and high adds none. The result is capped between 0 and 100. The score does not use external data or predict future performance.</p></section>
+    <footer>Open Product Research Toolkit · Community project · <a href="https://github.com/Marinero510/Project1">View source on GitHub</a></footer>
   </main>
+  <dialog id="detailDialog" class="detail-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><p class="eyebrow">PRODUCT NOTES</p><h2 id="detailName"></h2><div id="detailMeta" class="detail-meta"></div><p id="detailNotes"></p><p class="hint">All values are user-provided or sample data. Verify information independently.</p></dialog>
   <script src="app.js"></script>
 </body>
 </html>

@@ -1,35 +1,48 @@
-# ShopSignal — TikTok Shop Product Research Assistant
+# Open Product Research Toolkit
 
-A beginner-built web dashboard prototype for exploring product research workflows.
+A small, open-source, local-first web tool for organizing and comparing product research data.
 
-## Current status
+## Current features
 
-This is an early front-end prototype. It currently contains **sample data only** and is not connected to TikTok Shop, FastMoss, or the OpenAI API. The metrics and product prices are illustrative examples, not real market data.
+- Import product records from CSV files.
+- Search products and filter by category or saved status.
+- Sort by opportunity score, name, growth, or estimated sales.
+- Save and unsave products in browser storage.
+- View product notes and a transparent heuristic score.
+- Export the current dataset to CSV.
+- Download a CSV template.
 
-## Features in this version
+## Important data notes
 
-- Responsive product research dashboard
-- Sample product catalogue
-- Search by product name or category
-- Filter by category and sample trend signal
-- Product detail placeholder interaction
+The included records are fictional examples. This project does not connect to TikTok Shop, FastMoss, or another marketplace. It does not collect live sales, trend, or creator data. Imported information is supplied by the user and stored locally in the browser. The opportunity score is a simple heuristic for sorting, not a prediction or recommendation.
 
-## Run it on Windows
+## Run locally
 
-1. Download and unzip the project.
-2. Open the extracted `tiktok-shop-research-assistant` folder.
-3. Double-click `index.html` to open it in your browser.
+1. Download or clone this repository.
+2. Open `index.html` in a modern browser.
+3. Import your own CSV or load the demo dataset.
 
-No programming tools or account credentials are required for this first prototype.
+No build tools, account, or API key are required.
 
-## Planned work
+## CSV format
 
-1. Improve the product research workflow.
-2. Investigate documented and permitted data sources and integrations.
-3. Add secure server-side data access if an authorized API is available.
-4. Add AI-powered summaries using the OpenAI API, with API keys kept out of browser code.
-5. Add tests, documentation, and deployment instructions.
+Required columns: `product`, `category`, `price`, `estimated_sales`, `growth_percent`, `competition`.
 
-## Project integrity
+Optional column: `notes`.
 
-Do not describe planned features as already working. Do not commit API keys, passwords, access tokens, or private customer data.
+`competition` must be `low`, `medium`, or `high`. Numeric columns must contain non-negative numbers. Use values you have permission to use and clearly distinguish estimates from verified data.
+
+## Privacy
+
+This is a static client-side application. CSV parsing, filtering, saving, and exporting happen in your browser. The app does not send product data to a server. Saved records use browser local storage on the current device and browser.
+
+## Roadmap
+
+- Improve CSV validation and add tests.
+- Add editable product records and research notes.
+- Improve accessibility and mobile usability.
+- Consider integrations only where official documentation and permission allow them.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
